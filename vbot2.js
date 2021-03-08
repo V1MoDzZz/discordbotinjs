@@ -1,9 +1,7 @@
-
-
 const Discord = require('discord.js');
 const bot = new Discord.Client();
 
-const token = ('NzY0OTQ2NzY5NDI2NjQ1MDAy.X4NqMQ.23RUoeBq-mDNqIXtJqwLXJ2vVFs');
+const token = ('your token');
 
 
 
@@ -75,6 +73,66 @@ bot.on('message', msg=>{
         msg.channel.send('DEMON_MODZ420!')
     }
 })
+
+bot.on('message', msg=>{
+    if(msg.content === "/help"){
+         msg.channel.send({embed: {
+         color: 0x0000ff,
+
+         title: "Help",
+         url: "http://www.v1modzzz.xyz",
+         fields: [{
+            name: "/say",
+            value: "To make bot say something ."
+         },
+        {
+           name: "/spam",
+           value: "for spamming."
+        },
+
+       ],
+       timestamp: new Date(),
+       footer: {
+      
+           text: "© V1MoDzZz - 2020 "
+    }
+  }
+});
+        
+    }
+})
+
+bot.on('message', message => {
+    if (!message.guild) return;
+    if (message.content.startsWith('/kick')) {
+      const user = message.mentions.users.first();
+      if (user) {
+        const member = message.guild.member(user);
+        if (member) {
+          member
+            .kick('Optional reason that will display in the audit logs')
+            .then(() => {
+              message.reply(`Successfully kicked this dickhead ${user.tag}`);
+            })
+            .catch(err => {
+              message.reply('I cant kick him, maybe he have admin role, dont waste my time again you dummy');
+              console.error(err);
+            });
+        } else {
+          message.reply("User not found!");
+        }
+      } else {
+        message.reply("You didn't mention the user to kick, dumbass bitch");
+      }
+    }
+  });
+
+bot.on('message', msg => {
+  if (msg.content === '/ping') {
+    msg.reply('pong');
+    msg.channel.send('pong');
+  }
+});
 
 
 bot.on('message', msg=>{
