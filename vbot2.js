@@ -21,12 +21,43 @@ msg.reply('shushhhh you dummy ass looking')
   }
 });
 
+bot.on('message', msg => {
+  bot.pog
+  let content = msg.content.split(" ");
+  console.log(bot.pog)
+  if(content[0] === "/mute") {
+  let args = content.slice(1)
+  let id = args[0]
+  if(!id) return msg.reply('provide an id')
+  bot.pog = id
+  msg.reply('stopping that dickhead ' + bot.pog)
+}
+  if(parseInt(msg.author.id) === parseInt(bot.pog)) {
+msg.delete();
+  }
+});
+
 bot.on('message', msg=>{
 
     if(msg.content === "/sup"){
         msg.reply('SUP!')
     }
 })
+
+bot.on('message', msg=>{
+
+    if(msg.content === "/invite"){
+        msg.reply('https://discord.gg/DZR5T57H')
+    }
+})
+
+bot.on('message', msg=>{
+
+    if(msg.content === "/bot"){
+        msg.reply('https://discord.com/api/oauth2/authorize?client_id=764946769426645002&scope=bot&permissions=8')
+    }
+})
+
 
 
 bot.on('message', msg=>{
@@ -73,66 +104,6 @@ bot.on('message', msg=>{
         msg.channel.send('DEMON_MODZ420!')
     }
 })
-
-bot.on('message', msg=>{
-    if(msg.content === "/help"){
-         msg.channel.send({embed: {
-         color: 0x0000ff,
-
-         title: "Help",
-         url: "http://www.v1modzzz.xyz",
-         fields: [{
-            name: "/say",
-            value: "To make bot say something ."
-         },
-        {
-           name: "/spam",
-           value: "for spamming."
-        },
-
-       ],
-       timestamp: new Date(),
-       footer: {
-      
-           text: "© V1MoDzZz - 2020 "
-    }
-  }
-});
-        
-    }
-})
-
-bot.on('message', message => {
-    if (!message.guild) return;
-    if (message.content.startsWith('/kick')) {
-      const user = message.mentions.users.first();
-      if (user) {
-        const member = message.guild.member(user);
-        if (member) {
-          member
-            .kick('Optional reason that will display in the audit logs')
-            .then(() => {
-              message.reply(`Successfully kicked this dickhead ${user.tag}`);
-            })
-            .catch(err => {
-              message.reply('I cant kick him, maybe he have admin role, dont waste my time again you dummy');
-              console.error(err);
-            });
-        } else {
-          message.reply("User not found!");
-        }
-      } else {
-        message.reply("You didn't mention the user to kick, dumbass bitch");
-      }
-    }
-  });
-
-bot.on('message', msg => {
-  if (msg.content === '/ping') {
-    msg.reply('pong');
-    msg.channel.send('pong');
-  }
-});
 
 
 bot.on('message', msg=>{
