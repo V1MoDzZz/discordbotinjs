@@ -1,3 +1,7 @@
+VBot
+
+
+
 
 const Discord = require('discord.js');
 const bot = new Discord.Client();
@@ -8,7 +12,7 @@ const prefix = "/";
 
 bot.commands = new Discord.Collection();
 
-const token = ('Your token');
+const token = ('Your token here');
 
 bot.on('message', msg=>{
 
@@ -164,7 +168,7 @@ bot.on('message', message => {
     const args = message.content.split(" ").slice(1);
     if(message.content.startsWith('/say')) {
 
-        msg.member.hasPermission("ADMINISTRATOR")) return msg.reply(`only admins can use this command, but you can still use /embed command to make bot say something`);
+        message.member.hasPermission("ADMINISTRATOR")) return message.reply(`only admins can use this command, but you can still use /embed command to make bot say something`);
         message.delete()
         var saytext = args.join(" ");
 
