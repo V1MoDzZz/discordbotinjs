@@ -1,7 +1,4 @@
 
-
-
-
 const Discord = require('discord.js');
 const bot = new Discord.Client();
 
@@ -61,7 +58,7 @@ if (msg.author.bot) return; if(msg.content.toLowerCase().includes('nathan')) {
     }
     })
 
-var things = ['shushhhh you dummy ass looking', 'idiot', 'Yes Israel is gay', 'Israel Is Gay', 'Israel Is Gay Like You', 'Ballooon', 'stfu', 'I'll rape your mum', 'nathan is gay like you', 'shushhhh you dummy ass looking', 'shushhhh you dummy ass looking', 'shushhhh you dummy ass looking', 'shushhh you hmar ass looking'];
+var things = ['shushhhh you dummy ass looking', 'idiot', 'Yes Israel is gay', 'Israel Is Gay', 'Israel Is Gay Like You', 'Ballooon', 'stfu', 'I\'ll rape your mum', 'nathan is gay like you', 'shushhhh you dummy ass looking', 'shushhhh you dummy ass looking', 'shushhhh you dummy ass looking', 'shushhh you hmar ass looking'];
 
 bot.on('message', msg => {
 
