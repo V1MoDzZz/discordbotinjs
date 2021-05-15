@@ -11,14 +11,16 @@ const fs = require("fs");
 const prefix = ">";
 
 
-
+bot.on('ready', () => {
+  console.log(`Logged in.`);
+});
 
 bot.on('message', message => {
 if(message.content === ">help") {
 let embed = new MessageEmbed()
 .setTitle("Command List")
-.setDescription(">help, >kick, >shush, >mute, >annoy, >setnick, >warn")
-.setColor("RANDOM")
+.setDescription(">help, >kick, >shush, >mute, >annoy, >warn")
+.setColor("BLUE")
 message.channel.send(embed)
 }
 });
@@ -28,40 +30,27 @@ bot.on('message', message=>{
 
 bot.commands = new Discord.Collection();
 
-const token = ('token');
-
-
-
+const token = ('Token');
 
 
 bot.on('message', message=>{
+if (message.content.includes(">warn")) {
+    let dUser = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
+    if (!message.member.hasPermission("MAMAGE_MESSAGES")) return message.reply("You can't use that command!")
+    if (!dUser) return message.channel.send("Can't find user!")
+    let dMessage = args.join(" ").slice(22);
+    if (dMessage.length < 1) return message.reply('provide a reason ya dummy?')
 
-if (mssage.author.bot) return; if(message.content.toLowerCase().includes('>warn')) {
+    dUser.send(`${dUser}, You have been warned for ${dMessage} in the server ${message.guild.name}`)
 
-let dUser = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
-    if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply("You can't use that command!")
-
-if (!dUser) return message.channel.send("Can't find user!")
-
-let dMessage = args.join(" ").slice(22);
-    if (dMessage.length < 1) return message.reply('provide a reason you dummy!')
-
-message.channel.send(`<@${message.author.id}> has warned ${dUser} for {dMessage}`)
+    message.channel.send(`${dUser} has been warned for ${dMessage} `)
 
 
-dUser.send(`${dUser}, You have been warned for ${dMessage} in the server ${message.guild.name}`)
-
-    }
-    })
+})
 
 
 
-bot.on('message', message => {
-    if (message.content.includes('>setnick')) {
-if (!message.member.hasPermission("MANAGE_NICKNAME")) return message.reply("You can't use that command!")
-        bot.setNickname({nick: message.content.replace('>setnick ', '')});
-    }
-});
+
 
 
 bot.on('message', message=>{
@@ -69,7 +58,7 @@ bot.on('message', message=>{
 if (message.author.bot) return;
 if (message.channel.id === "831232009266659408" || message.channel.id === "834072383341068348" || message.channel.id === "834437443804856341" || message.channel.id === "803722047304761374" || message.channel.type === "dm" || message.channel.id === "831216198481346560" || message.channel.id === "727894910635868243"){
 
-fetch(`https://api.monkedev.com/fun/chat?msg=${message.content}&uid=${message.author.id}`)
+fetch(`https://api.monkedev.com/fun/chat?msg=${message.content}&uid=${message.author.id}&key=HEGygTTCJplZkL780FNgcys0T`)
 .then(response => response.json())
 .then(data => {
 message.channel.send(data.response);
