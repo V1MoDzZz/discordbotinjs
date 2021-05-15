@@ -2,6 +2,7 @@
 
 
 const Discord = require('discord.js');
+const { MessageEmbed } = require("discord.js")
 const fetch = require("node-fetch").default;
 const bot = new Discord.Client();
 
@@ -9,17 +10,53 @@ const fs = require("fs");
 
 const prefix = ">";
 
+
+bot.on('ready', () => {
+  console.log(`Logged in.`);
+});
+
+bot.on('message', message => {
+if(message.content === ">help") {
+let embed = new MessageEmbed()
+.setTitle("Command List")
+.setDescription(">help, >kick, >shush, >mute, >annoy, >setnick, >warn")
+.setColor("RANDOM")
+message.channel.send(embed)
+}
+});
+
+bot.on('message', message=>{
+
+
 bot.commands = new Discord.Collection();
 
-const token = ('token');
+const token = ('Token');
 
-bot.on('message', msg=>{
 
-if (msg.author.bot) return; if(msg.content.toLowerCase().includes('retard')) {
+bot.on('message', message=>{
+if (message.content.includes(">warn")) {
+    let dUser = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
+    if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply("You can't use that command!")
+    if (!dUser) return message.channel.send("Can't find user!")
+    let dMessage = args.join(" ").slice(22);
+    if (dMessage.length < 1) return message.reply('provide a reason you dummy!')
 
-   msg.channel.send(`Yes, ${user.tag} is a Retard.`);
+    dUser.send(`${dUser}, You have been warned for ${dMessage} in the server ${message.guild.name}`)
+
+    message.channel.send(`<@${message.author.id}> has warned ${dUser} for ${dMessage} `)
+
+
+
+})
+
+
+
+bot.on('message', message => {
+    if (message.content.includes('>setnick')) {
+if (!message.member.hasPermission("MANAGE_NICKNAME")) return message.reply("You can't use that command!")
+        bot.setNickname({nick: message.content.replace('>setnick ', '')});
     }
-    })
+});
 
 
 bot.on('message', message=>{
@@ -51,8 +88,8 @@ if(message.author.bot) return; if(message.content.toLowerCase().includes('donkey
 bot.on('message', message => {
     if (!message.guild) return;
     if (message.content.startsWith('>kick')) {
-if (msg.member.hasPermission("KICK_MEMBERS")) return msg.reply(`You can\'t use this command.
-***MISSING PERMISSIONS: KICK MEMBERS***
+if (message.member.hasPermission("KICK_MEMBERS")) return message.reply(`You can\'t use this command.
+MISSING PERMISSIONS: ***KICK MEMBERS***
 `);
       const user = message.mentions.users.first();
       if (user) {
