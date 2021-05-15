@@ -11,7 +11,7 @@ const prefix = ">";
 
 bot.commands = new Discord.Collection();
 
-const token = ('.X4NqMQ.PYYX8QqTfJeyoeNgxbkW8yDD3n8');
+const token = ('token');
 
 bot.on('message', msg=>{
 
