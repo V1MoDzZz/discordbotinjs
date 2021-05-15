@@ -11,7 +11,7 @@ const prefix = ">";
 
 bot.commands = new Discord.Collection();
 
-const token = ('token');
+const token = ('.X4NqMQ.PYYX8QqTfJeyoeNgxbkW8yDD3n8');
 
 bot.on('message', msg=>{
 
@@ -22,10 +22,10 @@ if (msg.author.bot) return; if(msg.content.toLowerCase().includes('retard')) {
     })
 
 
-bot.on('message', msg=>{
+bot.on('message', message=>{
 
-if (msg.author.bot) return;
-if (msg.channel.id === "831232009266659408" || message.channel.id === "834072383341068348" || message.channel.id === "834437443804856341" || message.channel.id === "803722047304761374" || message.channel.type === "dm" || message.channel.id === "831216198481346560" || message.channel.id === "727894910635868243"){
+if (message.author.bot) return;
+if (message.channel.id === "831232009266659408" || message.channel.id === "834072383341068348" || message.channel.id === "834437443804856341" || message.channel.id === "803722047304761374" || message.channel.type === "dm" || message.channel.id === "831216198481346560" || message.channel.id === "727894910635868243"){
 
 fetch(`https://api.monkedev.com/fun/chat?msg=${message.content}&uid=${message.author.id}`)
 .then(response => response.json())
@@ -113,13 +113,13 @@ bot.on('message', msg => {
   let id = args[0]
   if(!id) return msg.reply('provide an id')
   bot.pog = id
-var userIDs = bot.pog.includes('<@!') ?
+bot.pog = bot.pog.includes('<@!') ?
 bot.pog.replace('<@!', '').replace('>', '')
           : bot.pog.includes('<@') ? bot.pog.replace('<@', '').replace('<', '') : '';
 
   msg.reply('stopping that dickhead ' + bot.pog)
 }
-  if(parseInt(msg.author.id) === parseInt(userIDs)) {
+  if(parseInt(msg.author.id) === parseInt(bot.pog)) {
 var thing = things[Math.floor(Math.random()*things.length)];
 msg.reply(thing)
   }
@@ -139,13 +139,13 @@ bot.on('message', msg => {
   bot.pogs = ids
 
 
-var userID = bot.pog.includes('<@!') ?
-bot.pog.replace('<@!', '').replace('>', '')
-          : bot.pog.includes('<@') ? bot.pog.replace('<@', '').replace('<', '') : '';
+bot.pogs = bot.pogs.includes('<@!') ?
+bot.pogs.replace('<@!', '').replace('>', '')
+          : bot.pogs.includes('<@') ? bot.pogs.replace('<@', '').replace('<', '') : '';
 
   msg.reply('muting that dickhead ' + bot.pogs)
 }
-  if(parseInt(msg.author.id) === parseInt(userID)) {
+  if(parseInt(msg.author.id) === parseInt(bot.pogs)) {
 msg.delete();
   }
 });
@@ -161,14 +161,14 @@ bot.on('message', msg => {
   let idss = argsss[0]
   if(!idss) return msg.reply('provide an id')
   bot.pogss = idss
-  let UID7 = bot.pogss.replace('<', '')
-var userIDss = bot.pog.includes('<@!') ?
-bot.pog.replace('<@!', '').replace('>', '')
-          : bot.pog.includes('<@') ? bot.pog.replace('<@', '').replace('<', '') : '';
+
+bot.pogss = bot.pogss.includes('<@!') ?
+bot.pogss.replace('<@!', '').replace('>', '')
+          : bot.pogss.includes('<@') ? bot.pogss.replace('<@', '').replace('<', '') : '';
 
   msg.reply('annoying that dickhead ' + bot.pogss)
 }
-  if(parseInt(msg.author.id) === parseInt(userIDss)) {
+  if(parseInt(msg.author.id) === parseInt(bot.pogss)) {
 var things1 = things[Math.floor(Math.random()*things.length)];
 msg.reply(things1);
 msg.delete();
