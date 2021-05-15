@@ -1,24 +1,41 @@
 
 
 
-
 const Discord = require('discord.js');
+const fetch = require("node-fetch").default;
 const bot = new Discord.Client();
 
 const fs = require("fs");
 
-const prefix = "/";
+const prefix = ">";
 
 bot.commands = new Discord.Collection();
 
-const token = ('Your token here');
+const token = ('token');
 
 bot.on('message', msg=>{
 
 if (msg.author.bot) return; if(msg.content.toLowerCase().includes('retard')) {
 
-   msg.channel.send('Yes, Nathan is a Retard.');
+   msg.channel.send(`Yes, {msg.author.id} is a Retard.`);
     }
+    })
+
+
+bot.on('message', msg=>{
+
+if (message.author.bot) return;
+if (message.channel.id === "831232009266659408" || || message.channel.id === "834072383341068348" || message.channel.id === "834437443804856341" || message.channel.id === "803722047304761374" || message.channel.type === "dm" || message.channel.id === "831216198481346560" || message.channel.id === "727894910635868243"){
+
+fetch(`https://api.monkedev.com/fun/chat?msg=${message.content}&uid=${message.author.id}&key=HEGygTTCJplZkL780FNgcys0T`)
+.then(response => response.json())
+.then(data => {
+message.channel.send(data.response);
+})
+
+
+     }
+
     })
 
 bot.on('message', msg=>{
@@ -29,11 +46,81 @@ if (msg.author.bot) return; if(msg.content.toLowerCase().includes('donkey')) {
     }
     })
 
+
+
+bot.on('message', message => {
+    if (!message.guild) return;
+    if (message.content.startsWith('>kick')) {
+msg.member.hasPermission("KICK_MEMBERS")) return msg.reply(`You can\'t use this command.
+***MISSING PERMISSIONS: KICK MEMBERS***
+`);
+      const user = message.mentions.users.first();
+      if (user) {
+        const member = message.guild.member(user);
+        if (member) {
+          member
+            .kick('Optional reason that will display in the audit logs')
+            .then(() => {
+              message.reply(`Successfully kicked this dickhead ${user.tag}`);
+            })
+            .catch(err => {
+              message.reply('I cant kick him, maybe he have admin role, dont waste my time again you dummy');
+              console.error(err);
+            });
+        } else {
+          message.reply("User not found!");
+        }
+      } else {
+        message.reply("You didn't mention the user to kick, dumbass bitch");
+      }
+    }
+  });
+
+
+
+
+client.on('message', message => {
+  if (message.channel.type != 'text' || message.author.bot)
+    return;
+
+  let command = message.content.split(' ')[0].slice(1);
+  let args = message.content.replace('.' + command, '').trim();
+
+message.member.hasPermission("BAN_MEMBERS")) return msg.reply(`You can\'t use this command.`);
+
+if(message.content.includes('>ban')"){
+      
+        
+
+      let userID = args.includes('<@!') ? args.replace('<@!', '').replace('>', '')
+          : args.includes('<@') ? args.replace('<@', '').replace('<', '') : '';
+
+      if (userID == '') {
+        message.reply('Invalid user ID or mention.');
+        return;
+      }
+
+      message.guild.fetchMember(userID).then(member => {
+        member.kick("Banned by " + message.author.tag).then(m => {
+          message.channel.send('🔨 Banned <@' + userID + '>.');
+        }).catch(() => {
+          console.error;
+          message.reply('Could not ban the specified member.');
+        });
+      };
+      break;
+    }
+
+
+
+
+}
+
 bot.on('message', msg=>{
 
 if (msg.author.bot) return; if(msg.content.toLowerCase().includes('indian')) {
 
-   msg.channel.send('Yes, Nathan is indian');
+   msg.channel.send('Yes, {msg.author.id} is indian');
     }
     })
 
@@ -53,30 +140,28 @@ if (msg.author.bot) return; if(msg.content.toLowerCase().includes('gay')) {
     }
     })
 
-bot.on('message', msg=>{
 
-if (msg.author.bot) return; if(msg.content.toLowerCase().includes('nathan')) {
 
-   msg.channel.send('Yes, Nathan is gay.');
-    }
-    })
-
-var things = ['shushhhh you dummy ass looking', 'idiot', 'Yes Israel is gay', 'Israel Is Gay', 'Israel Is Gay Like You', 'Ballooon', 'stfu', 'I\'ll rape your mum', 'nathan is gay like you', 'shushhhh you dummy ass looking', 'shushhhh you dummy ass looking', 'shushhhh you dummy ass looking', 'shushhh you hmar ass looking'];
+var things = ['shushhhh you dummy ass looking', 'idiot', 'Yes Israel is gay', 'Israel Is Gay', 'Israel Is Gay Like You', 'Ballooon', 'stfu', 'I\'ll rape your mum', 'Ur dad is gay like you', 'shushhhh you dummy ass looking', 'shushhhh you dummy ass looking', 'shushhhh you dummy ass looking', 'shushhh you hmar ass looking'];
 
 bot.on('message', msg => {
 
   bot.pog
   let content = msg.content.split(" ");
   console.log(bot.pog)
-  if(content[0] === "/shush") {
+  if(content[0] === ">shush") {
   if (!msg.member.hasPermission("MANAGE_MESSAGES")) return msg.reply(`You can\'t use this command.`);
   let args = content.slice(1)
   let id = args[0]
   if(!id) return msg.reply('provide an id')
   bot.pog = id
+  let UID3 = bot.pog.replace('<', '')
+  let UID3 = bot.pog.replace('@', '')
+  let UID3 = bot.pog.replace('!', '')
+  let UID3 = bot.pog.replace('>', '')
   msg.reply('stopping that dickhead ' + bot.pog)
 }
-  if(parseInt(msg.author.id) === parseInt(bot.pog)) {
+  if(parseInt(msg.author.id) === parseInt(UID3)) {
 var thing = things[Math.floor(Math.random()*things.length)];
 msg.reply(thing)
   }
@@ -86,16 +171,21 @@ bot.on('message', msg => {
 
   bot.pogs
   let contents = msg.content.split(" ");
+
   console.log(bot.pogs)
-  if(contents[0] === "/mute") {
-  if (!msg.member.hasPermission("ADMINISTRATOR")) return msg.reply(`You can't use this command.`);
+  if(contents[0] === ">mute") {
+  if (!msg.member.hasPermission("MANAGE_MESSAGES")) return msg.reply(`You can't use this command.`);
   let argss = contents.slice(1)
   let ids = argss[0]
   if(!ids) return msg.reply('provide an id')
   bot.pogs = ids
-  msg.reply('stopping that dickhead ' + bot.pogs)
+  let UID = bot.pogs.replace('<', '')
+  let UID = bot.pogs.replace('@', '')
+  let UID = bot.pogs.replace('!', '')
+  let UID = bot.pogs.replace('>', '')
+  msg.reply('muting that dickhead ' + bot.pogs)
 }
-  if(parseInt(msg.author.id) === parseInt(bot.pogs)) {
+  if(parseInt(msg.author.id) === parseInt(UID)) {
 msg.delete();
   }
 });
@@ -105,15 +195,20 @@ bot.on('message', msg => {
   bot.pogss
   let contentss = msg.content.split(" ");
   console.log(bot.pogss)
-  if(contentss[0] === "/annoy") {
-  if (!msg.member.hasPermission("ADMINISTRATOR")) return msg.reply(`You can't use this command.`);
+  if(contentss[0] === ">annoy") {
+  if (!msg.member.hasPermission("MANAGE_MESSAGES")) return msg.reply(`You can't use this command.`);
   let argsss = contentss.slice(1)
   let idss = argsss[0]
   if(!idss) return msg.reply('provide an id')
   bot.pogss = idss
-  msg.reply('stopping that dickhead ' + bot.pogss)
+  let UID2 = bot.pogss.replace('<', '')
+  let UID2 = bot.pogss.replace('@', '')
+  let UID2 = bot.pogss.replace('!', '')
+  let UID2 = bot.pogss.replace('>', '')
+
+  msg.reply('annoying that dickhead ' + bot.pogss)
 }
-  if(parseInt(msg.author.id) === parseInt(bot.pogss)) {
+  if(parseInt(msg.author.id) === parseInt(UID2)) {
 var things1 = things[Math.floor(Math.random()*things.length)];
 msg.reply(things1);
 msg.delete();
@@ -122,7 +217,7 @@ msg.delete();
 
 bot.on('message', msg=>{
 
-    if(msg.content === "/sup"){
+    if(msg.content === ">sup"){
         msg.reply('SUP!')
     }
 })
@@ -137,7 +232,7 @@ bot.on('message', msg=>{
 
 bot.on('message', msg=>{
 
-    if(msg.content === "/bot"){
+    if(msg.content === ">bot"){
         msg.reply('https://discord.com/api/oauth2/authorize?client_id=764946769426645002&scope=bot&permissions=8')
     }
 })
@@ -147,7 +242,7 @@ bot.on('message', msg=>{
     bot.pog
     let content = msg.content.split(" ");
     console.log(bot.pog)
-    if(content[0] === "/spam"){
+    if(content[0] === ">spam"){
     if (!msg.member.hasPermission("ADMINISTRATOR")) return msg.reply(`You can't use this command.`);
     let args = content.slice(1)
     let id = args[0]
@@ -165,20 +260,20 @@ bot.on('message', message => {
 
     
     const args = message.content.split(" ").slice(1);
-    if(message.content.startsWith('/say')) {
+    if(message.content.startsWith('>say')) {
 
-        message.member.hasPermission("ADMINISTRATOR")) return message.reply(`only admins can use this command, but you can still use /embed command to make bot say something`);
+        message.member.hasPermission("MANAGE_MESSAGES")) return message.reply(`only admins can use this command, but you can still use /embed command to make bot say something`);
         message.delete()
         var saytext = args.join(" ");
 
-        if (msg.author.bot) return; 
+        if (message.author.bot) return; 
         message.channel.send(saytext)
     };
   } )
 
 
 bot.on('message', msg=>{
-    if(msg.content === "/goodnight"){
+    if(msg.content === ">goodnight"){
        for (i = 0; i < 4000; i++){
             msg.reply('@everyone GOODNIGHT!')
        }
@@ -186,7 +281,7 @@ bot.on('message', msg=>{
 })
 
 bot.on('message', msg=>{
-    if(msg.content === "/wakeup"){
+    if(msg.content === ">wakeup"){
        for (i = 0; i < 40000; i++){
             msg.reply('@everyone WAKEUP BITCHES!')
        }
@@ -194,14 +289,14 @@ bot.on('message', msg=>{
 })
 
 bot.on('message', msg=>{
-    if(msg.content === "/who is virgin?"){
+    if(msg.content === ">who is virgin?"){
         msg.channel.send('DEMON_MODZ420!')
     }
 })
 
 
 bot.on('message', msg=>{
-    if(msg.content === "/you are dumb"){
+    if(msg.content === ">you are dumb"){
         msg.reply('STFU!')
     }
 })
@@ -219,64 +314,42 @@ bot.on('message', msg=>{
 })
 
 bot.on('message', msg=>{
-    if(msg.content === "/who is violatedopp?"){
+    if(msg.content === ">who is violatedopp?"){
         msg.reply('he is a skid!')
     }
 })
 
 bot.on('message', msg=>{
-    if(msg.content === "/who is your creator?"){
+    if(msg.content === ">who is your creator?"){
         msg.reply('V1MoDzZz!')
     }
 })
 
-bot.on('message', msg=>{
-    if(msg.content === "/who are TR33?"){
-        msg.reply('TR33 is a hacking group!')
-    }
-})
 
-bot.on('message', msg=>{
-    if(msg.content === "/who is angeln909?"){
-        msg.reply('HE IS AN ALIEN!')
-    }
-})
+
+
+
+
+
+
 
 
 bot.on('message', msg=>{
-    if(msg.content === "/who is xdog?"){
-        msg.reply('xdog is a pedo who thinks he is best!')
-    }
-})
-
-bot.on('message', msg=>{
-    if(msg.content === "/who is jason?"){
-        msg.reply('you mean gayson?')
-    }
-})
-
-bot.on('message', msg=>{
-    if(msg.content === "/who is codingurlife?"){
-        msg.reply('i dont talk about skids')
-    }
-})
-
-bot.on('message', msg=>{
-    if(msg.content === "/"){
+    if(msg.content === ">"){
         msg.reply('talk fast i dont have whole day, you dummy')
     }
 })
 
 bot.on('message', msg=>{
-    if(msg.content === "/you are brainless"){
+    if(msg.content === ">you are brainless"){
         msg.reply('what did you just said????')
     }
 })
 
 bot.on('message', msg=>{
-    if(msg.content === "/ass"){
+    if(msg.content === ">ass"){
        if(msg.channel.nsfw){
-        msg.reply('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBtxRXJckki9ST5W4yzr0CuYFwy_h191XIKA&usqp=CAU')
+        msg.reply('https://no.com/hmar')
     }
     else { 
    msg.channel.send('Dumbass retard turn on nsfw to use this command!!!')
@@ -286,19 +359,19 @@ bot.on('message', msg=>{
 
 
 bot.on('message', msg=>{
-    if(msg.content === "/who is your dad?"){
+    if(msg.content === ">who is your dad?"){
         msg.reply('V1!')
     }
 })
 
 bot.on('message', msg=>{
-    if(msg.content === "/you are gay"){
+    if(msg.content === ">you are gay"){
         msg.reply('STFU you virgin!')
     }
 })
 
 bot.on('message', msg=>{
-    if(msg.content === "/you are retarded bot"){
+    if(msg.content === ">you are retarded bot"){
         msg.reply('who you calling retarded? you dummy!')
     }
 })
