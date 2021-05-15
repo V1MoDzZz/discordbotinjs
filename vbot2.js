@@ -27,7 +27,7 @@ bot.on('message', msg=>{
 if (message.author.bot) return;
 if (message.channel.id === "831232009266659408" || || message.channel.id === "834072383341068348" || message.channel.id === "834437443804856341" || message.channel.id === "803722047304761374" || message.channel.type === "dm" || message.channel.id === "831216198481346560" || message.channel.id === "727894910635868243"){
 
-fetch(`https://api.monkedev.com/fun/chat?msg=${message.content}&uid=${message.author.id}&key=HEGygTTCJplZkL780FNgcys0T`)
+fetch(`https://api.monkedev.com/fun/chat?msg=${message.content}&uid=${message.author.id}`)
 .then(response => response.json())
 .then(data => {
 message.channel.send(data.response);
