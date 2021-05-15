@@ -11,21 +11,21 @@ const prefix = ">";
 
 bot.commands = new Discord.Collection();
 
-const token = ('Your token');
+const token = ('token');
 
 bot.on('message', msg=>{
 
 if (msg.author.bot) return; if(msg.content.toLowerCase().includes('retard')) {
 
-   msg.channel.send(`Yes, {msg.author.id} is a Retard.`);
+   msg.channel.send(`Yes, ${user.tag} is a Retard.`);
     }
     })
 
 
 bot.on('message', msg=>{
 
-if (message.author.bot) return;
-if (message.channel.id === "831232009266659408" || || message.channel.id === "834072383341068348" || message.channel.id === "834437443804856341" || message.channel.id === "803722047304761374" || message.channel.type === "dm" || message.channel.id === "831216198481346560" || message.channel.id === "727894910635868243"){
+if (msg.author.bot) return;
+if (msg.channel.id === "831232009266659408" || message.channel.id === "834072383341068348" || message.channel.id === "834437443804856341" || message.channel.id === "803722047304761374" || message.channel.type === "dm" || message.channel.id === "831216198481346560" || message.channel.id === "727894910635868243"){
 
 fetch(`https://api.monkedev.com/fun/chat?msg=${message.content}&uid=${message.author.id}`)
 .then(response => response.json())
@@ -38,9 +38,9 @@ message.channel.send(data.response);
 
     })
 
-bot.on('message', msg=>{
+bot.on('message', message=>{
 
-if (msg.author.bot) return; if(msg.content.toLowerCase().includes('donkey')) {
+if(message.author.bot) return; if(message.content.toLowerCase().includes('donkey')) {
 
    msg.channel.send('Yes, Demon is donkey.');
     }
@@ -79,50 +79,8 @@ if (msg.member.hasPermission("KICK_MEMBERS")) return msg.reply(`You can\'t use t
 
 
 
-client.on('message', message => {
-  if (message.channel.type != 'text' || message.author.bot)
-    return;
-
-  let command = message.content.split(' ')[0].slice(1);
-  let args = message.content.replace('.' + command, '').trim();
-
-if (message.member.hasPermission("BAN_MEMBERS")) return msg.reply(`You can\'t use this command.`);
-
-if(message.content.includes('>ban')){
-      
-        
-
-      let userID = args.includes('<@!') ? args.replace('<@!', '').replace('>', '')
-          : args.includes('<@') ? args.replace('<@', '').replace('<', '') : '';
-
-      if (userID == '') {
-        message.reply('Invalid user ID or mention.');
-        return;
-      }
-
-      message.guild.fetchMember(userID).then(member => {
-        member.kick("Banned by " + message.author.tag).then(m => {
-          message.channel.send('🔨 Banned <@' + userID + '>.');
-        }).catch(() => {
-          console.error;
-          return message.reply('Could not ban the specified member.');
-        });
-      });
-      
-    }
 
 
-
-
-}
-
-bot.on('message', msg=>{
-
-if (msg.author.bot) return; if(msg.content.toLowerCase().includes('indian')) {
-
-   msg.channel.send('Yes, {msg.author.id} is indian');
-    }
-    })
 
 bot.on('message', msg=>{
 
@@ -155,13 +113,13 @@ bot.on('message', msg => {
   let id = args[0]
   if(!id) return msg.reply('provide an id')
   bot.pog = id
-  let UID100 = bot.pog.replace('<', '')
-  let UID67 = UID100.replace('@', '')
-  let UID5 = UID67.pog.replace('!', '')
-  let UID6 = UID5.replace('>', '')
+var userIDs = bot.pog.includes('<@!') ?
+bot.pog.replace('<@!', '').replace('>', '')
+          : bot.pog.includes('<@') ? bot.pog.replace('<@', '').replace('<', '') : '';
+
   msg.reply('stopping that dickhead ' + bot.pog)
 }
-  if(parseInt(msg.author.id) === parseInt(UID6)) {
+  if(parseInt(msg.author.id) === parseInt(userIDs)) {
 var thing = things[Math.floor(Math.random()*things.length)];
 msg.reply(thing)
   }
@@ -179,13 +137,15 @@ bot.on('message', msg => {
   let ids = argss[0]
   if(!ids) return msg.reply('provide an id')
   bot.pogs = ids
-  let UID1 = bot.pogs.replace('<', '')
-  let UID2 = UID1.replace('@', '')
-  let UID3 = UID2.replace('!', '')
-  let UID4 = UID3.replace('>', '')
+
+
+var userID = bot.pog.includes('<@!') ?
+bot.pog.replace('<@!', '').replace('>', '')
+          : bot.pog.includes('<@') ? bot.pog.replace('<@', '').replace('<', '') : '';
+
   msg.reply('muting that dickhead ' + bot.pogs)
 }
-  if(parseInt(msg.author.id) === parseInt(UID4)) {
+  if(parseInt(msg.author.id) === parseInt(userID)) {
 msg.delete();
   }
 });
@@ -202,13 +162,13 @@ bot.on('message', msg => {
   if(!idss) return msg.reply('provide an id')
   bot.pogss = idss
   let UID7 = bot.pogss.replace('<', '')
-  let UID8 = UID7.replace('@', '')
-  let UID9 = UID8.replace('!', '')
-  let UID10 = UID9.replace('>', '')
+var userIDss = bot.pog.includes('<@!') ?
+bot.pog.replace('<@!', '').replace('>', '')
+          : bot.pog.includes('<@') ? bot.pog.replace('<@', '').replace('<', '') : '';
 
   msg.reply('annoying that dickhead ' + bot.pogss)
 }
-  if(parseInt(msg.author.id) === parseInt(UID10)) {
+  if(parseInt(msg.author.id) === parseInt(userIDss)) {
 var things1 = things[Math.floor(Math.random()*things.length)];
 msg.reply(things1);
 msg.delete();
@@ -225,7 +185,7 @@ bot.on('message', msg=>{
 
 bot.on('message', msg=>{
 
-    if(msg.content === "/invite"){
+    if(msg.content === ">invite"){
         msg.reply('https://discord.gg/DZR5T57H')
     }
 })
@@ -262,7 +222,7 @@ bot.on('message', message => {
     const args = message.content.split(" ").slice(1);
     if(message.content.startsWith('>say')) {
 
-        message.member.hasPermission("MANAGE_MESSAGES")) return message.reply(`only admins can use this command, but you can still use /embed command to make bot say something`);
+        if(message.member.hasPermission("MANAGE_MESSAGES")) return message.reply(`only admins can use this command, but you can still use /embed command to make bot say something`);
         message.delete()
         var saytext = args.join(" ");
 
